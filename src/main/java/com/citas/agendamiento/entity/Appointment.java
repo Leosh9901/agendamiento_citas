@@ -33,13 +33,14 @@ public class Appointment {
     public Appointment() {
     }
 
-    public Appointment(int appointmentId, Date fecha, Time hora, int testId, int affiliateId) {
-        this.appointmentId = this.appointmentId;
-        this.dateExam = fecha;
+    public Appointment(int appointmentId, Date dateExam, Time hora, int testId, int affiliateId) {
+        this.appointmentId = appointmentId;
+        this.dateExam = dateExam;
         this.hora = hora;
         this.testId = testId;
         this.affiliateId = affiliateId;
     }
+
 
     public int getAppointmentId() {
         return appointmentId;

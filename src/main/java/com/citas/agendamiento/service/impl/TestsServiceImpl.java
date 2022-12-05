@@ -36,7 +36,7 @@ public class TestsServiceImpl implements TestsService {
 
             deletedTest = testsRepository.findById(testId).orElse(null);
             if(deletedTest == null){
-                throw new Exception("user not available");
+                throw new Exception("Test not available");
             }else {
                 testsRepository.deleteById(testId);
             }

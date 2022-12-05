@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AffiliateService {
 
-    List<Affiliate> getAllAffiliate();
+    List<Affiliate> getAllAffiliates();
 
     Affiliate getAffiliateById(int affiliateId);
 

@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "appointments")
-public class Appoinment {
+public class Appointment {
 
 
     @Id
@@ -18,7 +18,7 @@ public class Appoinment {
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date")
-    private Date fecha;
+    private Date dateExam;
 
     @JsonFormat(pattern = "HH:mm:ss")
     @Column(name = "hour")
@@ -35,7 +35,7 @@ public class Appoinment {
 
     public Appointment(int appointmentId, Date fecha, Time hora, int testId, int affiliateId) {
         this.appointmentId = this.appointmentId;
-        this.fecha = fecha;
+        this.dateExam = fecha;
         this.hora = hora;
         this.testId = testId;
         this.affiliateId = affiliateId;
@@ -49,12 +49,12 @@ public class Appoinment {
         this.appointmentId = appointmentId;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public Date getDateExam() {
+        return dateExam;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setDateExam(Date dateExam) {
+        this.dateExam = dateExam;
     }
 
     public Time getHora() {
@@ -85,7 +85,7 @@ public class Appoinment {
     public String toString() {
         return "Appointment{" +
                 "appointmentId=" + appointmentId +
-                ", fecha=" + fecha +
+                ", dateExam=" + dateExam +
                 ", hora=" + hora +
                 ", testId=" + testId +
                 ", affiliateId=" + affiliateId +

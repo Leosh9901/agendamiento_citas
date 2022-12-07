@@ -24,23 +24,24 @@ public class Appointment {
     @Column(name = "hour")
     private Time hora;
 
-    @Column(name = "id_test")
-    private int testId;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_test")
+    private Test test;
 
-    @Column(name = "id_affiliate")
-    private int affiliateId;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_affiliate")
+    private Affiliate affiliate;
 
     public Appointment() {
     }
 
-    public Appointment(int appointmentId, Date dateExam, Time hora, int testId, int affiliateId) {
+    public Appointment(int appointmentId, Date dateExam, Time hora, Test test, Affiliate affiliate) {
         this.appointmentId = appointmentId;
         this.dateExam = dateExam;
         this.hora = hora;
-        this.testId = testId;
-        this.affiliateId = affiliateId;
+        this.test = test;
+        this.affiliate = affiliate;
     }
-
 
     public int getAppointmentId() {
         return appointmentId;
@@ -66,20 +67,20 @@ public class Appointment {
         this.hora = hora;
     }
 
-    public int getTestId() {
-        return testId;
+    public Test getTest() {
+        return test;
     }
 
-    public void setTestId(int testId) {
-        this.testId = testId;
+    public void setTest(Test test) {
+        this.test = test;
     }
 
-    public int getAffiliateId() {
-        return affiliateId;
+    public Affiliate getAffiliate() {
+        return affiliate;
     }
 
-    public void setAffiliateId(int affiliateId) {
-        this.affiliateId = affiliateId;
+    public void setAffiliate(Affiliate affiliate) {
+        this.affiliate = affiliate;
     }
 
     @Override
@@ -88,8 +89,8 @@ public class Appointment {
                 "appointmentId=" + appointmentId +
                 ", dateExam=" + dateExam +
                 ", hora=" + hora +
-                ", testId=" + testId +
-                ", affiliateId=" + affiliateId +
+                ", test=" + test +
+                ", affiliate=" + affiliate +
                 '}';
     }
 }

@@ -1,7 +1,10 @@
 package com.citas.agendamiento.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "affiliates")
@@ -21,14 +24,19 @@ public class Affiliate {
     @Column(name = "mail")
     private String mail;
 
+    @OneToMany(mappedBy = "affiliate", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Appointment> appointments;
+
     public Affiliate() {
     }
 
-    public Affiliate(int affiliateId, String name, int age, String mail) {
+    public Affiliate(int affiliateId, String name, int age, String mail, List<Appointment> appointments) {
         this.affiliateId = affiliateId;
         this.name = name;
         this.age = age;
         this.mail = mail;
+        this.appointments = appointments;
     }
 
     public int getAffiliateId() {
@@ -63,6 +71,14 @@ public class Affiliate {
         this.mail = mail;
     }
 
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
+    }
+
     @Override
     public String toString() {
         return "Affiliate{" +
@@ -70,6 +86,7 @@ public class Affiliate {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", mail='" + mail + '\'' +
+                ", appointments=" + appointments +
                 '}';
     }
 }

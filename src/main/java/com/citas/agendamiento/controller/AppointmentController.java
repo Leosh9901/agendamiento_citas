@@ -83,16 +83,16 @@ public class AppointmentController {
     }
 
     @GetMapping("/appointmentByDate")
-    public ResponseEntity<List<AppointmentByDate>> findAllAppointmentByDateExam(@RequestParam("date") String date) {
+    public ResponseEntity<List<AppointmentByDate>> findAllAppointmentByDateExam(@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
 
         List<AppointmentByDate> appointments = null;
 
 
         try {
             appointments = appointmentService.findAllAppointmentByDateExam(date);
-            System.out.println(appointments);
+            System.out.println("------>>>> paso: "+appointments);
         } catch (Exception ex) {
-            ex.getMessage();
+            System.out.println("<<<----->>error: "+ex.getMessage());
         }
         return new ResponseEntity<List<AppointmentByDate>>(appointments, HttpStatus.OK);
     }

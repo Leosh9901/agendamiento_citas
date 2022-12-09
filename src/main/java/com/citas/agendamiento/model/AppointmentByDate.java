@@ -5,7 +5,7 @@ import java.util.Date;
 public class AppointmentByDate {
 
 
-    private int numAppointment;
+    private int numCitas;
 
     private int affiliateId;
 
@@ -16,19 +16,19 @@ public class AppointmentByDate {
     public AppointmentByDate() {
     }
 
-    public AppointmentByDate(int numAppointment, int affiliateId, String name, Date date) {
-        this.numAppointment = numAppointment;
+    public AppointmentByDate(int numCitas, int affiliateId, String name, Date date) {
+        this.numCitas = numCitas;
         this.affiliateId = affiliateId;
         this.name = name;
         this.date = date;
     }
 
-    public int getNumAppointment() {
-        return numAppointment;
+    public int getNumCitas() {
+        return numCitas;
     }
 
-    public void setNumAppointment(int numAppointment) {
-        this.numAppointment = numAppointment;
+    public void setNumCitas(int numCitas) {
+        this.numCitas = numCitas;
     }
 
     public int getAffiliateId() {
@@ -57,8 +57,8 @@ public class AppointmentByDate {
 
     @Override
     public String toString() {
-        return "AppointmentForDate{" +
-                "numAppointment=" + numAppointment +
+        return "AppointmentByDate{" +
+                "numCitas=" + numCitas +
                 ", affiliateId=" + affiliateId +
                 ", name='" + name + '\'' +
                 ", date=" + date +

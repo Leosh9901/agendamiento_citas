@@ -14,17 +14,14 @@ import java.util.List;
 @Repository
 public interface AppointmentRepository extends CrudRepository<Appointment, Integer> {
 
-    @Query("SELECT  COUNT(app.appointmentId) as numCitas, aff.affiliateId, aff.name, app.dateExam " +
-            "FROM Appointment app " +
-            "INNER JOIN app.affiliate aff " +
-            "WHERE app.dateExam = ?1 " +
-            "GROUP BY aff.affiliateId"
+    @Query(value = "SELECT COUNT(app.id_appointment) numCitas, aff.id_affiliate as affiliateId, aff.name, app.date " +
+            "FROM appointments app " +
+            "INNER JOIN affiliates aff " +
+            "ON  app.id_affiliate = aff.id_affiliate " +
+            "WHERE app.date = '2022-12-03' " +
+            "GROUP BY aff.id_affiliate ",
+            nativeQuery = true
     )
-    List<AppointmentByDate> findAllAppointmentByDateExam(String date);
-
-
-
-
-
+    List<AppointmentByDate> findAllAppointmentByDateExam(@Param("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date);
 
 }

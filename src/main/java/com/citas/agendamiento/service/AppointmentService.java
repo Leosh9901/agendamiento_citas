@@ -16,5 +16,5 @@ public interface AppointmentService {
 
     Appointment deletedAppointment(int appointmentId) throws Exception;
 
-    List<AppointmentByDate> findAllAppointmentByDateExam(String date);
+    List<AppointmentByDate> findAllAppointmentByDateExam(Date date);
 }

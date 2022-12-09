@@ -4,27 +4,23 @@ import com.citas.agendamiento.entity.Appointment;
 import com.citas.agendamiento.model.AppointmentByDate;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
 public interface AppointmentRepository extends CrudRepository<Appointment, Integer> {
 
-    @Query("Select new com.citas.agendamiento.model.AppointmentByDate" +
-            "(" +
-            "count(app.appointmentId) as numAppointment, " +
-            "aff.affiliateId, " +
-            "aff.name, " +
-            "app.date, " +
-            "alqj.fechaFinal " +
-            ")" +
-            "From Affiliate aff " +
-            "INNER JOIN aff.appointments app" +
-            "WHERE alqj.estado = 1 AND rol.idRol = 3 " +
-            "ORDER BY per.idPersona ASC"
+    @Query("SELECT  COUNT(app.appointmentId) as numCitas, aff.affiliateId, aff.name, app.dateExam " +
+            "FROM Appointment app " +
+            "INNER JOIN app.affiliate aff " +
+            "WHERE app.dateExam = ?1 " +
+            "GROUP BY aff.affiliateId"
     )
-    List<AppointmentByDate> findAllAppointmentByDate();
+    List<AppointmentByDate> findAllAppointmentByDateExam(String date);
 
 
 

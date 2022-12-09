@@ -1,12 +1,16 @@
 package com.citas.agendamiento.controller;
 
 import com.citas.agendamiento.entity.Appointment;
+import com.citas.agendamiento.model.AppointmentByDate;
 import com.citas.agendamiento.service.AppointmentService;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -76,5 +80,20 @@ public class AppointmentController {
             ex.getMessage();
         }
         return new ResponseEntity<Appointment>(appointment, HttpStatus.OK);
+    }
+
+    @GetMapping("/appointmentByDate")
+    public ResponseEntity<List<AppointmentByDate>> findAllAppointmentByDateExam(@RequestParam("date") String date) {
+
+        List<AppointmentByDate> appointments = null;
+
+
+        try {
+            appointments = appointmentService.findAllAppointmentByDateExam(date);
+            System.out.println(appointments);
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+        return new ResponseEntity<List<AppointmentByDate>>(appointments, HttpStatus.OK);
     }
 }

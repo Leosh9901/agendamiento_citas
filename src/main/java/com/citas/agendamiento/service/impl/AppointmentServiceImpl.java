@@ -1,11 +1,13 @@
 package com.citas.agendamiento.service.impl;
 
 import com.citas.agendamiento.entity.Appointment;
+import com.citas.agendamiento.model.AppointmentByDate;
 import com.citas.agendamiento.repository.AppointmentRepository;
 import com.citas.agendamiento.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -44,6 +46,12 @@ public class AppointmentServiceImpl implements AppointmentService {
             throw ex;
         }
         return deletedAppointment;
+    }
+
+    @Override
+    public List<AppointmentByDate> findAllAppointmentByDateExam(String date) {
+        System.out.println(date);
+        return appointmentRepository.findAllAppointmentByDateExam(date);
     }
 
 

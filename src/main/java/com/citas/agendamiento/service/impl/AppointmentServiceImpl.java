@@ -1,11 +1,14 @@
 package com.citas.agendamiento.service.impl;
 
 import com.citas.agendamiento.entity.Appointment;
+import com.citas.agendamiento.model.AppointmentByAffiliate;
+import com.citas.agendamiento.model.AppointmentByDate;
 import com.citas.agendamiento.repository.AppointmentRepository;
 import com.citas.agendamiento.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -34,17 +37,26 @@ public class AppointmentServiceImpl implements AppointmentService {
 
         Appointment deletedAppointment = null;
         try {
-            deletedAppointment= appointmentRepository.findById(appointmentId).orElse(null);
-            if (deletedAppointment == null){
+            deletedAppointment = appointmentRepository.findById(appointmentId).orElse(null);
+            if (deletedAppointment == null) {
                 throw new Exception("Appointment not available");
-            }else {
+            } else {
                 appointmentRepository.deleteById(appointmentId);
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
             throw ex;
         }
         return deletedAppointment;
     }
 
+    @Override
+    public List<AppointmentByDate> findAllAppointmentByDateExam(Date date) {
+        return appointmentRepository.findAllAppointmentByDateExam(date);
+    }
 
+
+    @Override
+    public List<AppointmentByAffiliate> findAppointmentByAffiliate(int affiliateId) {
+        return appointmentRepository.findAppointmentByAffiliate(affiliateId);
+    }
 }

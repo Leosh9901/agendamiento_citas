@@ -1,6 +1,7 @@
 package com.citas.agendamiento.service;
 
 import com.citas.agendamiento.entity.Appointment;
+import com.citas.agendamiento.model.AppointmentByAffiliate;
 import com.citas.agendamiento.model.AppointmentByDate;
 
 import java.util.Date;
@@ -17,4 +18,6 @@ public interface AppointmentService {
     Appointment deletedAppointment(int appointmentId) throws Exception;
 
     List<AppointmentByDate> findAllAppointmentByDateExam(Date date);
+
+    List<AppointmentByAffiliate> findAppointmentByAffiliate(int affiliateId);
 }

@@ -1,6 +1,7 @@
 package com.citas.agendamiento.controller;
 
 import com.citas.agendamiento.entity.Appointment;
+import com.citas.agendamiento.model.AppointmentByAffiliate;
 import com.citas.agendamiento.model.AppointmentByDate;
 import com.citas.agendamiento.service.AppointmentService;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -95,5 +96,21 @@ public class AppointmentController {
             ex.getMessage();
         }
         return new ResponseEntity<List<AppointmentByDate>>(appointments, HttpStatus.OK);
+
+    }
+    @GetMapping("/appointmentByAffiliate/{id}")
+    public ResponseEntity<List<AppointmentByAffiliate>> findAppointmentByAffiliate(@PathVariable("id") int affiliateId) {
+
+        List<AppointmentByAffiliate> appointments = null;
+
+
+        try {
+            appointments = appointmentService.findAppointmentByAffiliate(affiliateId);
+
+
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+        return new ResponseEntity<List<AppointmentByAffiliate>>(appointments, HttpStatus.OK);
     }
 }

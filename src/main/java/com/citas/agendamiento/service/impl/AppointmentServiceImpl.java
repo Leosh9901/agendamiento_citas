@@ -1,6 +1,7 @@
 package com.citas.agendamiento.service.impl;
 
 import com.citas.agendamiento.entity.Appointment;
+import com.citas.agendamiento.model.AppointmentByAffiliate;
 import com.citas.agendamiento.model.AppointmentByDate;
 import com.citas.agendamiento.repository.AppointmentRepository;
 import com.citas.agendamiento.service.AppointmentService;
@@ -54,4 +55,8 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
 
+    @Override
+    public List<AppointmentByAffiliate> findAppointmentByAffiliate(int affiliateId){
+        return appointmentRepository.findAppointmentByAffiliate(affiliateId);
+    }
 }

@@ -1,6 +1,7 @@
 package com.citas.agendamiento.repository;
 
 import com.citas.agendamiento.entity.Appointment;
+import com.citas.agendamiento.model.AppointmentByAffiliate;
 import com.citas.agendamiento.model.AppointmentByDate;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -28,6 +29,19 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Integ
     )
     List<AppointmentByDate> findAllAppointmentByDateExam(@DateTimeFormat(pattern = "yyyy-MM-dd") Date date);
 
+    @Query("SELECT new com.citas.agendamiento.model.AppointmentByAffiliate" +
+            "(" +
+            "aff.affiliateId, " +
+            "aff.name, " +
+            "app.hora, " +
+            "app.dateExam, " +
+            "app.test.testsId " +
+            ")" +
+            "FROM Appointment app " +
+            "INNER JOIN app.affiliate aff " +
+            "WHERE aff.affiliateId = :id "
+    )
+    List<AppointmentByAffiliate> findAppointmentByAffiliate(@Param("id") int affiliateId);
 
 
 }

@@ -90,9 +90,9 @@ public class AppointmentController {
 
         try {
             appointments = appointmentService.findAllAppointmentByDateExam(date);
-            System.out.println("------>>>> paso: "+appointments);
+
         } catch (Exception ex) {
-            System.out.println("<<<----->>error: "+ex.getMessage());
+            ex.getMessage();
         }
         return new ResponseEntity<List<AppointmentByDate>>(appointments, HttpStatus.OK);
     }

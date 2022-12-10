@@ -50,10 +50,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     public List<AppointmentByDate> findAllAppointmentByDateExam(Date date) {
-        System.out.println("-----asakjsbakbskjabsjfkas");
-        List<AppointmentByDate> lista = appointmentRepository.findAllAppointmentByDateExam(date);
-        System.out.println("*******>>>: "+lista);
-        return lista;
+        return appointmentRepository.findAllAppointmentByDateExam(date);
     }
 
 

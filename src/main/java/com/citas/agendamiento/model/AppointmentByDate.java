@@ -1,33 +1,36 @@
 package com.citas.agendamiento.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class AppointmentByDate {
 
 
-    private int numCitas;
+    private long numCitas;
 
     private int affiliateId;
 
     private String name;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
     public AppointmentByDate() {
     }
 
-    public AppointmentByDate(int numCitas, int affiliateId, String name, Date date) {
+    public AppointmentByDate(long numCitas, int affiliateId, String name, Date date) {
         this.numCitas = numCitas;
         this.affiliateId = affiliateId;
         this.name = name;
         this.date = date;
     }
 
-    public int getNumCitas() {
+    public long getNumCitas() {
         return numCitas;
     }
 
-    public void setNumCitas(int numCitas) {
+    public void setNumCitas(long numCitas) {
         this.numCitas = numCitas;
     }
 

@@ -4,7 +4,6 @@ import com.citas.agendamiento.entity.Appointment;
 import com.citas.agendamiento.model.AppointmentByAffiliate;
 import com.citas.agendamiento.model.AppointmentByDate;
 import com.citas.agendamiento.service.AppointmentService;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -55,7 +54,7 @@ public class AppointmentController {
         } catch (Exception ex) {
             ex.getMessage();
         }
-        return new ResponseEntity<Appointment>(appointments, HttpStatus.OK);
+        return new ResponseEntity<Appointment>(appointments, HttpStatus.CREATED);
     }
 
 
@@ -98,6 +97,7 @@ public class AppointmentController {
         return new ResponseEntity<List<AppointmentByDate>>(appointments, HttpStatus.OK);
 
     }
+
     @GetMapping("/appointmentByAffiliate/{id}")
     public ResponseEntity<List<AppointmentByAffiliate>> findAppointmentByAffiliate(@PathVariable("id") int affiliateId) {
 

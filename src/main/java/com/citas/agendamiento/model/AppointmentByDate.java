@@ -1,5 +1,6 @@
 package com.citas.agendamiento.model;
 
+import com.citas.agendamiento.entity.Affiliate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
@@ -9,9 +10,8 @@ public class AppointmentByDate {
 
     private long numCitas;
 
-    private int affiliateId;
+    private Affiliate affiliate;
 
-    private String name;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;
@@ -19,10 +19,9 @@ public class AppointmentByDate {
     public AppointmentByDate() {
     }
 
-    public AppointmentByDate(long numCitas, int affiliateId, String name, Date date) {
+    public AppointmentByDate(long numCitas, Affiliate affiliate, Date date) {
         this.numCitas = numCitas;
-        this.affiliateId = affiliateId;
-        this.name = name;
+        this.affiliate = affiliate;
         this.date = date;
     }
 
@@ -34,20 +33,12 @@ public class AppointmentByDate {
         this.numCitas = numCitas;
     }
 
-    public int getAffiliateId() {
-        return affiliateId;
+    public Affiliate getAffiliate() {
+        return affiliate;
     }
 
-    public void setAffiliateId(int affiliateId) {
-        this.affiliateId = affiliateId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setAffiliate(Affiliate affiliate) {
+        this.affiliate = affiliate;
     }
 
     public Date getDate() {
@@ -62,8 +53,7 @@ public class AppointmentByDate {
     public String toString() {
         return "AppointmentByDate{" +
                 "numCitas=" + numCitas +
-                ", affiliateId=" + affiliateId +
-                ", name='" + name + '\'' +
+                ", affiliate=" + affiliate +
                 ", date=" + date +
                 '}';
     }

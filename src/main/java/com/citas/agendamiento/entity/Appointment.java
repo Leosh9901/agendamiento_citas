@@ -16,7 +16,7 @@ public class Appointment {
     @Column(name = "id_appointment")
     private int appointmentId;
 
-    @JsonFormat(pattern = "yyyy-MM-dd" )
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date")
     private Date dateExam;
 

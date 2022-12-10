@@ -37,13 +37,13 @@ public class AppointmentServiceImpl implements AppointmentService {
 
         Appointment deletedAppointment = null;
         try {
-            deletedAppointment= appointmentRepository.findById(appointmentId).orElse(null);
-            if (deletedAppointment == null){
+            deletedAppointment = appointmentRepository.findById(appointmentId).orElse(null);
+            if (deletedAppointment == null) {
                 throw new Exception("Appointment not available");
-            }else {
+            } else {
                 appointmentRepository.deleteById(appointmentId);
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
             throw ex;
         }
         return deletedAppointment;
@@ -56,7 +56,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 
     @Override
-    public List<AppointmentByAffiliate> findAppointmentByAffiliate(int affiliateId){
+    public List<AppointmentByAffiliate> findAppointmentByAffiliate(int affiliateId) {
         return appointmentRepository.findAppointmentByAffiliate(affiliateId);
     }
 }

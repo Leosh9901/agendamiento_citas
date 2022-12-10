@@ -17,13 +17,13 @@ public class AffiliatesController {
     private AffiliateService affiliateService;
 
     @GetMapping("/allAffiliates")
-    public ResponseEntity<List<Affiliate>> getAllAffiliate(){
+    public ResponseEntity<List<Affiliate>> getAllAffiliate() {
 
         List<Affiliate> affiliates = null;
 
         try {
             affiliates = affiliateService.getAllAffiliates();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.getMessage();
         }
 
@@ -31,13 +31,13 @@ public class AffiliatesController {
     }
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<Affiliate> getAffiliateByUd(@PathVariable("id") int affiliateId){
+    public ResponseEntity<Affiliate> getAffiliateByUd(@PathVariable("id") int affiliateId) {
 
         Affiliate affiliates = null;
 
         try {
             affiliates = affiliateService.getAffiliateById(affiliateId);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.getMessage();
         }
 
@@ -45,27 +45,27 @@ public class AffiliatesController {
     }
 
     @PostMapping("/addAffiliate")
-    public ResponseEntity<Affiliate> addAffiliate(@RequestBody Affiliate affiliate){
+    public ResponseEntity<Affiliate> addAffiliate(@RequestBody Affiliate affiliate) {
 
         Affiliate affiliates = null;
 
         try {
             affiliates = affiliateService.addOrUpdateAffiliate(affiliate);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.getMessage();
         }
 
-        return new ResponseEntity<Affiliate>(affiliates, HttpStatus.OK);
+        return new ResponseEntity<Affiliate>(affiliates, HttpStatus.CREATED);
     }
 
     @PutMapping("/updateAffiliate")
-    public ResponseEntity<Affiliate> updateAffiliate(@RequestBody Affiliate affiliate){
+    public ResponseEntity<Affiliate> updateAffiliate(@RequestBody Affiliate affiliate) {
 
         Affiliate affiliates = null;
 
         try {
             affiliates = affiliateService.addOrUpdateAffiliate(affiliate);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.getMessage();
         }
 
@@ -73,13 +73,13 @@ public class AffiliatesController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Affiliate> deletedAffiliate(@PathVariable("id") int affiliateId){
+    public ResponseEntity<Affiliate> deletedAffiliate(@PathVariable("id") int affiliateId) {
 
         Affiliate affiliates = null;
 
         try {
             affiliates = affiliateService.deletedAffiliate(affiliateId);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.getMessage();
         }
 

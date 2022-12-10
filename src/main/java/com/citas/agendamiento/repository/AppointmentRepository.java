@@ -18,8 +18,7 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Integ
     @Query("SELECT new com.citas.agendamiento.model.AppointmentByDate" +
             "(" +
             "COUNT(app.appointmentId) as num, " +
-            "aff.affiliateId, " +
-            "aff.name, " +
+            "app.affiliate, " +
             "app.dateExam " +
             ")" +
             "FROM Appointment app " +
@@ -35,7 +34,7 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Integ
             "aff.name, " +
             "app.hora, " +
             "app.dateExam, " +
-            "app.test.testsId " +
+            "app.test " +
             ")" +
             "FROM Appointment app " +
             "INNER JOIN app.affiliate aff " +

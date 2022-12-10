@@ -1,8 +1,8 @@
 package com.citas.agendamiento.model;
 
+import com.citas.agendamiento.entity.Test;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import java.sql.Time;
 import java.util.Date;
 
 public class AppointmentByAffiliate {
@@ -17,17 +17,17 @@ public class AppointmentByAffiliate {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
-    private int testId;
+    private Test test;
 
     public AppointmentByAffiliate() {
     }
 
-    public AppointmentByAffiliate(int affiliateId, String name, Date hour, Date date, int testId) {
+    public AppointmentByAffiliate(int affiliateId, String name, Date hour, Date date, Test test) {
         this.affiliateId = affiliateId;
         this.name = name;
         this.hour = hour;
         this.date = date;
-        this.testId = testId;
+        this.test = test;
     }
 
     public int getAffiliateId() {
@@ -62,12 +62,12 @@ public class AppointmentByAffiliate {
         this.date = date;
     }
 
-    public int getTestId() {
-        return testId;
+    public Test getTest() {
+        return test;
     }
 
-    public void setTestId(int testId) {
-        this.testId = testId;
+    public void setTest(Test test) {
+        this.test = test;
     }
 
     @Override
@@ -77,7 +77,7 @@ public class AppointmentByAffiliate {
                 ", name='" + name + '\'' +
                 ", hour=" + hour +
                 ", date=" + date +
-                ", testId=" + testId +
+                ", test=" + test +
                 '}';
     }
 }

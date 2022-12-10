@@ -21,7 +21,7 @@ public class TestsServiceImpl implements TestsService {
 
     @Override
     public Test getTestById(int testId) {
-        return  testsRepository.findById(testId).orElse(null);
+        return testsRepository.findById(testId).orElse(null);
     }
 
     @Override
@@ -35,13 +35,12 @@ public class TestsServiceImpl implements TestsService {
         try {
 
             deletedTest = testsRepository.findById(testId).orElse(null);
-            if(deletedTest == null){
+            if (deletedTest == null) {
                 throw new Exception("Test not available");
-            }else {
+            } else {
                 testsRepository.deleteById(testId);
             }
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             throw ex;
         }
         return deletedTest;

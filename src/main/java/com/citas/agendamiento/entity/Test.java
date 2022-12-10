@@ -1,13 +1,16 @@
 package com.citas.agendamiento.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "tests")
 public class Test {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_test")
     private int testsId;
 
@@ -17,13 +20,18 @@ public class Test {
     @Column(name = "description")
     private String description;
 
+    @OneToMany(mappedBy = "test", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Appointment> appointments;
+
     public Test() {
     }
 
-    public Test(int testsId, String name, String description) {
+    public Test(int testsId, String name, String description, List<Appointment> appointments) {
         this.testsId = testsId;
         this.name = name;
         this.description = description;
+        this.appointments = appointments;
     }
 
     public int getTestsId() {
@@ -50,12 +58,21 @@ public class Test {
         this.description = description;
     }
 
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
+    }
+
     @Override
     public String toString() {
         return "Test{" +
                 "testsId=" + testsId +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", appointments=" + appointments +
                 '}';
     }
 }

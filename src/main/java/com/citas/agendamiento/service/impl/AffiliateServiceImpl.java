@@ -35,12 +35,12 @@ public class AffiliateServiceImpl implements AffiliateService {
         try {
             deletedAffiliate = affiliateRepository.findById(affiliateId).orElse(null);
 
-            if (deletedAffiliate == null){
+            if (deletedAffiliate == null) {
                 throw new Exception("Affiliate not available");
-            }else {
+            } else {
                 affiliateRepository.deleteById(affiliateId);
             }
-        } catch (Exception ex){
+        } catch (Exception ex) {
             throw ex;
         }
         return deletedAffiliate;

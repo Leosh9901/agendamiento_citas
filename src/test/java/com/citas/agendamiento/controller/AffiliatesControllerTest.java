@@ -14,22 +14,25 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AffiliatesControllerTest {
 
-    @BeforeEach
-    void setUp() {
-    }
+
 
     @Autowired
     Affiliate affiliate;
 
-    @Autowired
-    AgendamientoApplication agendamientoApplication;
-
-    @Autowired
-    private AffiliateService affiliateService;
 
     AffiliateRepository affiliateRepository = Mockito.mock(AffiliateRepository.class);
+
     @Autowired
-    AffiliatesController affiliatesController = new AffiliatesController(affiliateRepository,agendamientoApplication);
+    AffiliatesController affiliatesController = new AffiliatesController();
+
+    @BeforeEach
+    void setUp() {
+
+
+
+        Mockito.when(affiliatesController.getAllAffiliate());
+    }
+
 
     @Test
     void getAllAffiliate() {

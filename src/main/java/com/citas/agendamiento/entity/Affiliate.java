@@ -31,6 +31,19 @@ public class Affiliate {
     public Affiliate() {
     }
 
+    public Affiliate(String name, int age, String mail) {
+        this.name = name;
+        this.age = age;
+        this.mail = mail;
+    }
+
+    public Affiliate(int affiliateId, String name, int age, String mail) {
+        this.affiliateId = affiliateId;
+        this.name = name;
+        this.age = age;
+        this.mail = mail;
+    }
+
     public Affiliate(int affiliateId, String name, int age, String mail, List<Appointment> appointments) {
         this.affiliateId = affiliateId;
         this.name = name;

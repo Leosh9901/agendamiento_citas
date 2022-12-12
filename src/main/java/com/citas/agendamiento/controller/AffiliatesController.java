@@ -16,6 +16,7 @@ public class AffiliatesController {
     @Autowired
     private AffiliateService affiliateService;
 
+
     @GetMapping("/allAffiliates")
     public ResponseEntity<List<Affiliate>> getAllAffiliate() {
 
@@ -69,7 +70,7 @@ public class AffiliatesController {
             ex.getMessage();
         }
 
-        return new ResponseEntity<Affiliate>(affiliates, HttpStatus.OK);
+        return new ResponseEntity<Affiliate>(affiliates, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")

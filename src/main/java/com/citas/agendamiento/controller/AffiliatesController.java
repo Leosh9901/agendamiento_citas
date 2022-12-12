@@ -1,8 +1,6 @@
 package com.citas.agendamiento.controller;
 
-import com.citas.agendamiento.AgendamientoApplication;
 import com.citas.agendamiento.entity.Affiliate;
-import com.citas.agendamiento.repository.AffiliateRepository;
 import com.citas.agendamiento.service.AffiliateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -72,7 +70,7 @@ public class AffiliatesController {
             ex.getMessage();
         }
 
-        return new ResponseEntity<Affiliate>(affiliates, HttpStatus.OK);
+        return new ResponseEntity<Affiliate>(affiliates, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")

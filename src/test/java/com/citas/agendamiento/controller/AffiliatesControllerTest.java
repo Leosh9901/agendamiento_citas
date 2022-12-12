@@ -2,6 +2,7 @@ package com.citas.agendamiento.controller;
 
 import com.citas.agendamiento.entity.Affiliate;
 import com.citas.agendamiento.service.AffiliateService;
+import com.google.gson.Gson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -29,6 +30,7 @@ class AffiliatesControllerTest {
 
     private Affiliate affiliateTwo;
 
+
     @MockBean
     private AffiliateService affiliateService;
 
@@ -41,15 +43,13 @@ class AffiliatesControllerTest {
 
     @Test
     void getAllAffiliate() throws Exception {
-        //Data
+
         List<Affiliate> affiliateList = new ArrayList<>();
         affiliateList.add(affiliateOne);
         affiliateList.add(affiliateTwo);
 
-        //When
         Mockito.when(affiliateService.getAllAffiliates()).thenReturn(affiliateList);
 
-        //Then = Assert
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/affiliates/allAffiliates")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -61,23 +61,68 @@ class AffiliatesControllerTest {
     }
 
     @Test
-    void getAffiliateById() {
-        // 1
+    void getAffiliateById() throws Exception {
+
+        int affiliateId = 2;
+
+        Mockito.when(affiliateService.getAffiliateById(affiliateId)).thenReturn(affiliateOne);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/affiliates/getById/{id}", 2)
+                .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(
+                MockMvcResultMatchers.status().is(200)
+        ).andExpect(
+                MockMvcResultMatchers.jsonPath("$.affiliateId", is(2))
+        );
+    }
+
+
+    @Test
+    void addAffiliate() throws Exception {
+        affiliateOne = new Affiliate("paco", 18, "paco@gmail.com");
+        Gson gson = new Gson();
+
+        Mockito.when(affiliateService.addOrUpdateAffiliate(affiliateOne)).thenReturn(affiliateTwo);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/affiliates/addAffiliate")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .content(gson.toJson(affiliateOne))
+        ).andExpect(
+                MockMvcResultMatchers.status().is(201)
+        );
     }
 
     @Test
-    void addAffiliate() {
-     //   affiliate = new Affiliate("sdvsd", 12, "dssldkns");
+    void updateAffiliate() throws Exception {
+        affiliateOne = new Affiliate(2, "paco", 18, "paco@gmail.com");
+
+        Gson gson = new Gson();
+
+        Mockito.when(affiliateService.addOrUpdateAffiliate(affiliateOne)).thenReturn(affiliateTwo);
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/affiliates/updateAffiliate")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .content(gson.toJson(affiliateOne))
+        ).andExpect(
+                MockMvcResultMatchers.status().is(201)
+        );
     }
 
     @Test
-    void updateAffiliate() {
-      //  affiliate = new Affiliate(1, "sdvsd", 12, "dssldkns");
-    }
+    void deletedAffiliate() throws Exception {
+        int affiliateId = 2;
 
-    @Test
-    void deletedAffiliate() {
-        // 1
+        Mockito.when(affiliateService.deletedAffiliate(affiliateId)).thenReturn(affiliateOne);
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/affiliates/delete/{id}", 2)
+                .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(
+                MockMvcResultMatchers.status().is(200)
+        ).andExpect(
+                MockMvcResultMatchers.jsonPath("$.affiliateId", is(2))
+        );
     }
 
 

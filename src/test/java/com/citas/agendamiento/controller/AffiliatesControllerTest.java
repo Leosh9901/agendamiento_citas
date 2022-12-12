@@ -2,6 +2,7 @@ package com.citas.agendamiento.controller;
 
 import com.citas.agendamiento.entity.Affiliate;
 import com.citas.agendamiento.service.AffiliateService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(AffiliatesController.class)
 class AffiliatesControllerTest {
@@ -31,11 +33,14 @@ class AffiliatesControllerTest {
     private Affiliate affiliateTwo;
 
 
+
+
     @MockBean
     private AffiliateService affiliateService;
 
     @BeforeEach
     void setUp() {
+
 
         affiliateOne = new Affiliate(2, "nicolas", 22, "nico@gmail.com");
         affiliateTwo = new Affiliate(3, "luis", 27, "luis@gmail.com");
@@ -82,7 +87,7 @@ class AffiliatesControllerTest {
         affiliateOne = new Affiliate("paco", 18, "paco@gmail.com");
         Gson gson = new Gson();
 
-        Mockito.when(affiliateService.addOrUpdateAffiliate(affiliateOne)).thenReturn(affiliateTwo);
+        Mockito.when(affiliateService.addOrUpdateAffiliate(affiliateOne)).thenReturn(affiliateOne);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/affiliates/addAffiliate")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -90,7 +95,7 @@ class AffiliatesControllerTest {
                 .content(gson.toJson(affiliateOne))
         ).andExpect(
                 MockMvcResultMatchers.status().is(201)
-        );
+        ).andExpect(status().isCreated());
     }
 
     @Test
@@ -107,7 +112,7 @@ class AffiliatesControllerTest {
                 .content(gson.toJson(affiliateOne))
         ).andExpect(
                 MockMvcResultMatchers.status().is(201)
-        );
+        ).andExpect(status().isCreated());
     }
 
     @Test

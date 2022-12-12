@@ -40,6 +40,11 @@ public class Test {
         this.description = description;
     }
 
+    public Test(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
 
     public int getTestsId() {
         return testsId;

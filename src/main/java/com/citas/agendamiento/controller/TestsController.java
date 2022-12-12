@@ -55,7 +55,7 @@ public class TestsController {
             ex.getMessage();
         }
 
-        return new ResponseEntity<Test>(tests, HttpStatus.OK);
+        return new ResponseEntity<Test>(tests, HttpStatus.CREATED);
     }
 
     @PutMapping("/updateTest")

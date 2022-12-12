@@ -92,7 +92,7 @@ public class Affiliate {
         this.appointments = appointments;
     }
 
-    @Override
+   @Override
     public String toString() {
         return "Affiliate{" +
                 "affiliateId=" + affiliateId +

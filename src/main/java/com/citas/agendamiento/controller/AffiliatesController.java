@@ -66,6 +66,8 @@ public class AffiliatesController {
 
         try {
             affiliates = affiliateService.addOrUpdateAffiliate(affiliate);
+            System.out.println(affiliate);
+            System.out.println(affiliateService.addOrUpdateAffiliate(affiliate));
         } catch (Exception ex) {
             ex.getMessage();
         }

@@ -34,6 +34,13 @@ public class Test {
         this.appointments = appointments;
     }
 
+    public Test(int testsId, String name, String description) {
+        this.testsId = testsId;
+        this.name = name;
+        this.description = description;
+    }
+
+
     public int getTestsId() {
         return testsId;
     }

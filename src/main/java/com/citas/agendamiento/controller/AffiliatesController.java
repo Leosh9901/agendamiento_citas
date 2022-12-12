@@ -16,6 +16,20 @@ public class AffiliatesController {
     @Autowired
     private AffiliateService affiliateService;
 
+//    try {
+//        // see note 1
+//        return ResponseEntity
+//                .status(HttpStatus.CREATED)
+//                .body(this.userService.chkCredentials(accessKey, secretKey, timestamp));
+//    }
+//    catch(ChekingCredentialsFailedException e) {
+//        e.printStackTrace(); // see note 2
+//        return ResponseEntity
+//                .status(HttpStatus.FORBIDDEN)
+//                .body("Error Message");
+//    }
+    // https://hc.apache.org/httpclient-legacy/apidocs/org/apache/commons/httpclient/HttpStatus.html
+
 
     @GetMapping("/allAffiliates")
     public ResponseEntity<List<Affiliate>> getAllAffiliate() {

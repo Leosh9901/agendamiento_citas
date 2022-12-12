@@ -36,7 +36,7 @@ class AffiliatesControllerTest {
 
     @BeforeEach
     void setUp() {
-        //Given =Arrange
+
         affiliateOne = new Affiliate(2, "nicolas", 22, "nico@gmail.com");
         affiliateTwo = new Affiliate(3, "luis", 27, "luis@gmail.com");
     }
@@ -124,6 +124,5 @@ class AffiliatesControllerTest {
                 MockMvcResultMatchers.jsonPath("$.affiliateId", is(2))
         );
     }
-
 
 }

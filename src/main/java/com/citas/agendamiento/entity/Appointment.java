@@ -43,6 +43,13 @@ public class Appointment {
         this.affiliate = affiliate;
     }
 
+    public Appointment(Date dateExam, Time hora, Test test, Affiliate affiliate) {
+        this.dateExam = dateExam;
+        this.hora = hora;
+        this.test = test;
+        this.affiliate = affiliate;
+    }
+
     public int getAppointmentId() {
         return appointmentId;
     }

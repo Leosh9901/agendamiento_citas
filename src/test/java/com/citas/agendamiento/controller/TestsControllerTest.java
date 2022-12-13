@@ -33,24 +33,24 @@ class TestsControllerTest {
     private TestsService testsService;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
 
-       testOne = new Test(1,"prueba de sangre","se toma una muestra de sangre");
-       testTwo = new Test(2,"prueba de orina","se toma una muestra de orina");
-   }
+        testOne = new Test(1, "prueba de sangre", "se toma una muestra de sangre");
+        testTwo = new Test(2, "prueba de orina", "se toma una muestra de orina");
+    }
 
     @org.junit.jupiter.api.Test
     void getAllTests() throws Exception {
-        List<Test> testList = new  ArrayList<>();
+        List<Test> testList = new ArrayList<>();
         testList.add(testOne);
         testList.add(testTwo);
-        Gson gson = new Gson();
+
 
         Mockito.when(testsService.getAllTests()).thenReturn(testList);
 
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/tests/allTests/")
-                .contentType(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(
                 MockMvcResultMatchers.status().is(200)
         ).andExpect(
@@ -60,37 +60,37 @@ class TestsControllerTest {
 
     @org.junit.jupiter.api.Test
     void getTestsById() throws Exception {
-       int testId = 1;
+        int testId = 1;
 
-       Mockito.when(testsService.getTestById(testId)).thenReturn(testOne);
+        Mockito.when(testsService.getTestById(testId)).thenReturn(testOne);
 
-       mockMvc.perform(MockMvcRequestBuilders.get("/tests/getById/{id}", 1)
-       ).andExpect(
-               MockMvcResultMatchers.status().is(200)
-       ).andExpect(
-               MockMvcResultMatchers.jsonPath("$.name", is("prueba de sangre"))
-       );
+        mockMvc.perform(MockMvcRequestBuilders.get("/tests/getById/{id}", 1)
+        ).andExpect(
+                MockMvcResultMatchers.status().is(200)
+        ).andExpect(
+                MockMvcResultMatchers.jsonPath("$.name", is("prueba de sangre"))
+        );
     }
 
     @org.junit.jupiter.api.Test
     void addTest() throws Exception {
-       testOne = new Test("prueba covid","se realiza un analizis covid");
-       Gson gson = new Gson();
-       Mockito.when(testsService.addOrUpdateTest(testOne)).thenReturn(testOne);
+        testOne = new Test("prueba covid", "se realiza un analizis covid");
+        Gson gson = new Gson();
+        Mockito.when(testsService.addOrUpdateTest(testOne)).thenReturn(testOne);
 
-       mockMvc.perform(MockMvcRequestBuilders.post("/tests/addTest/")
-       .contentType(MediaType.APPLICATION_JSON)
-       .accept(MediaType.APPLICATION_JSON)
-       .content(gson.toJson(testOne))
-       ).andExpect(
-               MockMvcResultMatchers.status().is(201)
-       ).andExpect(
-               MockMvcResultMatchers.status().isCreated());
+        mockMvc.perform(MockMvcRequestBuilders.post("/tests/addTest/")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .content(gson.toJson(testOne))
+        ).andExpect(
+                MockMvcResultMatchers.status().is(201)
+        ).andExpect(
+                MockMvcResultMatchers.status().isCreated());
     }
 
     @org.junit.jupiter.api.Test
-    void updateTest() throws  Exception {
-        testOne = new Test(1,"prueba covid","se realiza un analizis covid");
+    void updateTest() throws Exception {
+        testOne = new Test(1, "prueba covid", "se realiza un analizis covid");
         Gson gson = new Gson();
         Mockito.when(testsService.addOrUpdateTest(testOne)).thenReturn(testTwo);
 
@@ -110,11 +110,11 @@ class TestsControllerTest {
 
         Mockito.when(testsService.deletedTest(testId)).thenReturn(testOne);
 
-        mockMvc.perform(MockMvcRequestBuilders.delete("/tests/delete/{id}", 1)
+        mockMvc.perform(MockMvcRequestBuilders.delete("/tests/delete/{id}", testId)
         ).andExpect(
                 MockMvcResultMatchers.status().is(200)
         ).andExpect(
-                MockMvcResultMatchers.jsonPath("$.testsId", is(1))
+                MockMvcResultMatchers.jsonPath("$.testsId", is(testId))
         );
     }
 }

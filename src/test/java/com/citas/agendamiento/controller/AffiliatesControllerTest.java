@@ -2,7 +2,6 @@ package com.citas.agendamiento.controller;
 
 import com.citas.agendamiento.entity.Affiliate;
 import com.citas.agendamiento.service.AffiliateService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,9 +30,6 @@ class AffiliatesControllerTest {
     private Affiliate affiliateOne;
 
     private Affiliate affiliateTwo;
-
-
-
 
     @MockBean
     private AffiliateService affiliateService;

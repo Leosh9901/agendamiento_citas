@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tests")
+@RequestMapping("/api/tests")
 public class TestsController {
 
     @Autowired
     private TestsService testsService;
 
-    @GetMapping("/allTests")
+    @GetMapping("/getAllTests")
     public ResponseEntity<List<Test>> getAllTests() {
 
         List<Test> tests = null;
@@ -44,7 +44,7 @@ public class TestsController {
         return new ResponseEntity<Test>(test, HttpStatus.OK);
     }
 
-    @PostMapping("/addTest")
+    @PostMapping("/postTest")
     public ResponseEntity<Test> addTest(@RequestBody Test test) {
 
         Test tests = null;
@@ -58,7 +58,7 @@ public class TestsController {
         return new ResponseEntity<Test>(tests, HttpStatus.CREATED);
     }
 
-    @PutMapping("/updateTest")
+    @PutMapping("/putTest")
     public ResponseEntity<Test> updateTest(@RequestBody Test test) {
 
         Test tests = null;

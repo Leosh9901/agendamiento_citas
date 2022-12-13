@@ -49,7 +49,7 @@ class TestsControllerTest {
         Mockito.when(testsService.getAllTests()).thenReturn(testList);
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/tests/allTests/")
+                MockMvcRequestBuilders.get("/api/tests/getAllTests/")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(
                 MockMvcResultMatchers.status().is(200)
@@ -64,7 +64,7 @@ class TestsControllerTest {
 
         Mockito.when(testsService.getTestById(testId)).thenReturn(testOne);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/tests/getById/{id}", 1)
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/tests/getById/{id}", testId)
         ).andExpect(
                 MockMvcResultMatchers.status().is(200)
         ).andExpect(
@@ -73,12 +73,12 @@ class TestsControllerTest {
     }
 
     @org.junit.jupiter.api.Test
-    void addTest() throws Exception {
+    void postTest() throws Exception {
         testOne = new Test("prueba covid", "se realiza un analizis covid");
         Gson gson = new Gson();
         Mockito.when(testsService.addOrUpdateTest(testOne)).thenReturn(testOne);
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/tests/addTest/")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/tests/postTest/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .content(gson.toJson(testOne))
@@ -89,12 +89,12 @@ class TestsControllerTest {
     }
 
     @org.junit.jupiter.api.Test
-    void updateTest() throws Exception {
+    void putTest() throws Exception {
         testOne = new Test(1, "prueba covid", "se realiza un analizis covid");
         Gson gson = new Gson();
         Mockito.when(testsService.addOrUpdateTest(testOne)).thenReturn(testTwo);
 
-        mockMvc.perform(MockMvcRequestBuilders.put("/tests/updateTest/")
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/tests/putTest/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .content(gson.toJson(testOne))
@@ -110,7 +110,7 @@ class TestsControllerTest {
 
         Mockito.when(testsService.deletedTest(testId)).thenReturn(testOne);
 
-        mockMvc.perform(MockMvcRequestBuilders.delete("/tests/delete/{id}", testId)
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/tests/delete/{id}", testId)
         ).andExpect(
                 MockMvcResultMatchers.status().is(200)
         ).andExpect(

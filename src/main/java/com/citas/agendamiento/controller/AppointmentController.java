@@ -67,7 +67,7 @@ public class AppointmentController {
         } catch (Exception ex) {
             ex.getMessage();
         }
-        return new ResponseEntity<Appointment>(appointments, HttpStatus.OK);
+        return new ResponseEntity<Appointment>(appointments, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")

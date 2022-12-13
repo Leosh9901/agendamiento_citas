@@ -14,13 +14,13 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/appointments")
+@RequestMapping("/api/appointments")
 public class AppointmentController {
 
     @Autowired
     private AppointmentService appointmentService;
 
-    @GetMapping("/allAppointments")
+    @GetMapping("/getAllAppointments")
     public ResponseEntity<List<Appointment>> getAllAppointments() {
 
         List<Appointment> appointments = null;
@@ -45,7 +45,7 @@ public class AppointmentController {
         return new ResponseEntity<Appointment>(appointment, HttpStatus.OK);
     }
 
-    @PostMapping("/addAppointment")
+    @PostMapping("/postAppointment")
     public ResponseEntity<Appointment> addAppointment(@RequestBody Appointment appointment) {
         Appointment appointments = null;
 
@@ -58,7 +58,7 @@ public class AppointmentController {
     }
 
 
-    @PutMapping("/updateAppointment")
+    @PutMapping("/putAppointment")
     public ResponseEntity<Appointment> updateAppointment(@RequestBody Appointment appointment) {
         Appointment appointments = null;
 
@@ -82,7 +82,7 @@ public class AppointmentController {
         return new ResponseEntity<Appointment>(appointment, HttpStatus.OK);
     }
 
-    @GetMapping("/appointmentByDate")
+    @GetMapping("/getAppointmentByDate")
     public ResponseEntity<List<AppointmentByDate>> findAllAppointmentByDateExam(@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
 
         List<AppointmentByDate> appointments = null;
@@ -98,7 +98,7 @@ public class AppointmentController {
 
     }
 
-    @GetMapping("/appointmentByAffiliate/{id}")
+    @GetMapping("/getAppointmentByAffiliate/{id}")
     public ResponseEntity<List<AppointmentByAffiliate>> findAppointmentByAffiliate(@PathVariable("id") int affiliateId) {
 
         List<AppointmentByAffiliate> appointments = null;

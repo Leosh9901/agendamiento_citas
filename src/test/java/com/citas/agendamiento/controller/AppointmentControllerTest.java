@@ -78,7 +78,7 @@ class AppointmentControllerTest {
         Mockito.when(appointmentService.getAllAppointments()).thenReturn(appointmentList);
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/appointments/allAppointments/")
+                MockMvcRequestBuilders.get("/api/appointments/getAllAppointments/")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(
                 MockMvcResultMatchers.status().is(200)
@@ -95,7 +95,7 @@ class AppointmentControllerTest {
 
         Mockito.when(appointmentService.getAppointmentById(appointmentId)).thenReturn(appointmentOne);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/appointments/getById/{id}", 36)
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/appointments/getById/{id}", 36)
         ).andExpect(
                 MockMvcResultMatchers.status().is(200)
         ).andExpect(
@@ -112,7 +112,7 @@ class AppointmentControllerTest {
 
         Mockito.when(appointmentService.addOrUpdateAppointment(appointmentOne)).thenReturn(appointmentOne);
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/appointments/addAppointment")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/appointments/postAppointment")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .content(gson.toJson(appointmentOne))
@@ -130,7 +130,7 @@ class AppointmentControllerTest {
 
         Mockito.when(appointmentService.addOrUpdateAppointment(appointmentOne)).thenReturn(appointmentOne);
 
-        mockMvc.perform(MockMvcRequestBuilders.put("/appointments/updateAppointment")
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/appointments/putAppointment")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .content(gson.toJson(appointmentOne))
@@ -147,7 +147,7 @@ class AppointmentControllerTest {
 
         Mockito.when(appointmentService.deletedAppointment(appointmentId)).thenReturn(appointmentOne);
 
-        mockMvc.perform(MockMvcRequestBuilders.delete("/appointments/delete/{id}/", appointmentId)
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/appointments/delete/{id}/", appointmentId)
         ).andExpect(
                 MockMvcResultMatchers.status().is(200)
         ).andExpect(
@@ -169,7 +169,7 @@ class AppointmentControllerTest {
         Mockito.when(appointmentService.findAllAppointmentByDateExam(dateExam)).thenReturn(appointmentByDateList);
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/appointments/appointmentByDate")
+                MockMvcRequestBuilders.get("/api/appointments/getAppointmentByDate")
                         .contentType(MediaType.APPLICATION_JSON)
                         .param("date", "2022-12-03")
         ).andExpect(MockMvcResultMatchers.status().is(200)
@@ -192,7 +192,7 @@ class AppointmentControllerTest {
         Mockito.when(appointmentService.findAppointmentByAffiliate(2)).thenReturn(appointmentByAffiliateList);
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/appointments/appointmentByAffiliate/{id}", 2)
+                MockMvcRequestBuilders.get("/api/appointments/getAppointmentByAffiliate/{id}", 2)
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(
                 MockMvcResultMatchers.status().is(200)

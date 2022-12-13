@@ -52,7 +52,7 @@ class AffiliatesControllerTest {
         Mockito.when(affiliateService.getAllAffiliates()).thenReturn(affiliateList);
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/affiliates/allAffiliates")
+                MockMvcRequestBuilders.get("/api/affiliates/getAllAffiliates")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(
                 MockMvcResultMatchers.status().is(200)
@@ -68,7 +68,7 @@ class AffiliatesControllerTest {
 
         Mockito.when(affiliateService.getAffiliateById(affiliateId)).thenReturn(affiliateOne);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/affiliates/getById/{id}", 2)
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/affiliates/getById/{id}", 2)
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(
                 MockMvcResultMatchers.status().is(200)
@@ -85,7 +85,7 @@ class AffiliatesControllerTest {
 
         Mockito.when(affiliateService.addOrUpdateAffiliate(affiliateOne)).thenReturn(affiliateOne);
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/affiliates/addAffiliate")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/affiliates/postAffiliate")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .content(gson.toJson(affiliateOne))
@@ -102,7 +102,7 @@ class AffiliatesControllerTest {
 
         Mockito.when(affiliateService.addOrUpdateAffiliate(affiliateOne)).thenReturn(affiliateTwo);
 
-        mockMvc.perform(MockMvcRequestBuilders.put("/affiliates/updateAffiliate")
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/affiliates/putAffiliate")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .content(gson.toJson(affiliateOne))
@@ -117,7 +117,7 @@ class AffiliatesControllerTest {
 
         Mockito.when(affiliateService.deletedAffiliate(affiliateId)).thenReturn(affiliateOne);
 
-        mockMvc.perform(MockMvcRequestBuilders.delete("/affiliates/delete/{id}", 2)
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/affiliates/delete/{id}", 2)
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(
                 MockMvcResultMatchers.status().is(200)

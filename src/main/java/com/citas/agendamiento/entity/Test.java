@@ -1,13 +1,16 @@
 package com.citas.agendamiento.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "tests")
-public class Tests {
+public class Test {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_test")
     private int testsId;
 
@@ -17,14 +20,31 @@ public class Tests {
     @Column(name = "description")
     private String description;
 
-    public Tests() {
+    @OneToMany(mappedBy = "test", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Appointment> appointments;
+
+    public Test() {
     }
 
-    public Tests(int testsId, String name, String description) {
+    public Test(int testsId, String name, String description, List<Appointment> appointments) {
+        this.testsId = testsId;
+        this.name = name;
+        this.description = description;
+        this.appointments = appointments;
+    }
+
+    public Test(int testsId, String name, String description) {
         this.testsId = testsId;
         this.name = name;
         this.description = description;
     }
+
+    public Test(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
 
     public int getTestsId() {
         return testsId;
@@ -50,12 +70,21 @@ public class Tests {
         this.description = description;
     }
 
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
+    }
+
     @Override
     public String toString() {
-        return "Tests{" +
+        return "Test{" +
                 "testsId=" + testsId +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", appointments=" + appointments +
                 '}';
     }
 }

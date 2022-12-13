@@ -1,16 +1,16 @@
 package com.citas.agendamiento.service;
 
-import com.citas.agendamiento.entity.Tests;
+import com.citas.agendamiento.entity.Test;
 
 import java.util.List;
 
 public interface TestsService {
 
-    List<Tests> getAllTests();
+    List<Test> getAllTests();
 
-    Tests getTestById(int testId);
+    Test getTestById(int testId);
 
-    Tests addOrUpdateTest(Tests test);
+    Test addOrUpdateTest(Test test);
 
-    Tests deletedTest(int testId) throws Exception;
+    Test deletedTest(int testId) throws Exception;
 }

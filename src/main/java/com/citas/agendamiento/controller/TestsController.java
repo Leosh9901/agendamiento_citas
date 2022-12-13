@@ -1,6 +1,6 @@
 package com.citas.agendamiento.controller;
 
-import com.citas.agendamiento.entity.Tests;
+import com.citas.agendamiento.entity.Test;
 import com.citas.agendamiento.service.TestsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,9 +17,9 @@ public class TestsController {
     private TestsService testsService;
 
     @GetMapping("/allTests")
-    public ResponseEntity<List<Tests>> getAllTests() {
+    public ResponseEntity<List<Test>> getAllTests() {
 
-        List<Tests> tests = null;
+        List<Test> tests = null;
 
         try {
             tests = testsService.getAllTests();
@@ -27,27 +27,27 @@ public class TestsController {
             ex.getMessage();
         }
 
-        return new ResponseEntity<List<Tests>>(tests, HttpStatus.OK);
+        return new ResponseEntity<List<Test>>(tests, HttpStatus.OK);
     }
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<Tests> getTestsById(@PathVariable("id") int testId) {
+    public ResponseEntity<Test> getTestsById(@PathVariable("id") int testId) {
 
-        Tests tests = null;
+        Test test = null;
 
         try {
-            tests = testsService.getTestById(testId);
+            test = testsService.getTestById(testId);
         } catch (Exception ex) {
             ex.getMessage();
         }
 
-        return new ResponseEntity<Tests>(tests, HttpStatus.OK);
+        return new ResponseEntity<Test>(test, HttpStatus.OK);
     }
 
     @PostMapping("/addTest")
-    public ResponseEntity<Tests> addTest(@RequestBody Tests test) {
+    public ResponseEntity<Test> addTest(@RequestBody Test test) {
 
-        Tests tests = null;
+        Test tests = null;
 
         try {
             tests = testsService.addOrUpdateTest(test);
@@ -55,13 +55,13 @@ public class TestsController {
             ex.getMessage();
         }
 
-        return new ResponseEntity<Tests>(tests, HttpStatus.OK);
+        return new ResponseEntity<Test>(tests, HttpStatus.CREATED);
     }
 
     @PutMapping("/updateTest")
-    public ResponseEntity<Tests> updateTest(@RequestBody Tests test) {
+    public ResponseEntity<Test> updateTest(@RequestBody Test test) {
 
-        Tests tests = null;
+        Test tests = null;
 
         try {
             tests = testsService.addOrUpdateTest(test);
@@ -69,21 +69,21 @@ public class TestsController {
             ex.getMessage();
         }
 
-        return new ResponseEntity<Tests>(tests, HttpStatus.OK);
+        return new ResponseEntity<Test>(tests, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Tests> deletedTest(@PathVariable("id") int testId) {
+    public ResponseEntity<Test> deletedTest(@PathVariable("id") int testId) {
 
-        Tests tests = null;
+        Test test = null;
 
         try {
-            tests = testsService.deletedTest(testId);
+            test = testsService.deletedTest(testId);
         } catch (Exception ex) {
             ex.getMessage();
         }
 
-        return new ResponseEntity<Tests>(tests, HttpStatus.OK);
+        return new ResponseEntity<Test>(test, HttpStatus.OK);
     }
 
 }
